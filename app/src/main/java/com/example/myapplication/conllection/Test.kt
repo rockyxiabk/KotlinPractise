@@ -89,4 +89,18 @@ fun main(args: Array<String>) {
     val listString = StringBuffer("The list of numbers: ")
     numbers11.joinTo(listString)
     println(listString)
+
+    println("------------filter-------")
+    val filterMap = mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key11" to 11)
+    //filer 获取该条件下的集合 filterNot 获取否定该条件下的集合
+    val filter = filterMap.filterNot { (key, value) -> (key.endsWith("1") && value > 10) }
+    println(filter)
+    println("-------------filter not null---------")
+    val listNull = listOf("test", null, "wfr", "24gf", null)
+    listNull.filterNotNull().forEach { println("$it--${it.length}") }
+    println("-------------划分 partition---------")
+    val listPartion = listOf("test", "24r", "wfr", "24gf", "2gfasdv")
+    val (partition,secondP) = listPartion.partition { it.length > 3 }
+    println(partition)
+    println(secondP)
 }
