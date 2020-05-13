@@ -27,6 +27,7 @@ fun foo3(): Flow<Int> = flow {
     }
 }
 
+@ExperimentalCoroutinesApi
 @InternalCoroutinesApi
 suspend fun main(args: Array<String>) {
     foo().forEach { println(it) }
