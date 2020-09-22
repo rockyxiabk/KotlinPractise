@@ -36,6 +36,7 @@ fun main(args: Array<String>) {
     }
     println("takeIf：$takeIf   takeUnless:$takeUnless")
     runBlocking {
+        //顺序执行 collect
         events().onEach { println("----->$it") }
             .collect {
                 println("-----over")
@@ -43,11 +44,13 @@ fun main(args: Array<String>) {
         println("Done")
     }
     runBlocking {
+        //非顺序执行 launchIn
         events().onEach { println("------launcher：$it") }
             .launchIn(this)
         println("---launcher done")
     }
     runBlocking {
+        //可重复执行的
         val produce = produceNumbers()
         repeat(5) {
             launchProcessor(it, produce)
@@ -74,6 +77,6 @@ fun CoroutineScope.launchProcessor(id: Int, channel: ReceiveChannel<Int>) = laun
     }
 }
 
-private fun events(): Flow<Int> = (1..3).asFlow().onEach {
+private fun events(): Flow<Int> = (1..10).asFlow().onEach {
     delay(100)
 }
