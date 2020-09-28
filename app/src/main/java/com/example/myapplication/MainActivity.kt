@@ -19,6 +19,9 @@ class MainActivity : AppCompatActivity() {
         main.coroutineContext.apply {
 
         }
+        main.let {
+
+        }
     }
 
     override fun onDestroy() {

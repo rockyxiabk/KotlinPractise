@@ -2,15 +2,38 @@ package com.example.myapplication.conllection
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import java.math.BigDecimal
+import kotlin.random.Random
 
 @RequiresApi(Build.VERSION_CODES.N)
 fun main(args: Array<String>) {
-    test1()
+//    test1()
+//
+//    test2()
+//
+//    test3()
 
-    test2()
+    test4()
 
-    test3()
+}
 
+fun test4() {
+    //random 产生 10组数字
+    var list: MutableList<Double> = mutableListOf()
+    val num = 120
+    val count = 1326.23
+    for (i in 0..10) {
+        val randomNum = (115..135).random() + Math.random().toFloat()
+        val i1 = (Math.round(randomNum * 100)) / 100.0
+        list.add(i1)
+    }
+    var total = 0.0
+    list.map {
+        total += it
+    }
+    total = (Math.round(total * 100)) / 100.0
+    println(list)
+    println(total)
 }
 
 @RequiresApi(Build.VERSION_CODES.N)

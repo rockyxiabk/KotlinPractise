@@ -6,12 +6,12 @@ class Host(val host: String) {
     }
 }
 
-class Connection(val host: Host, val port: Int) {
-    fun printPort() {
+class Connection(private val host: Host, private val port: Int) {
+    private fun printPort() {
         print("$port")
     }
 
-    fun Host.printMsg() {
+    private fun Host.printMsg() {
         printHost()
         print(":")
         printPort()

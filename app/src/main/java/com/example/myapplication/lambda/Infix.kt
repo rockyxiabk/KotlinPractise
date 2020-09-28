@@ -31,8 +31,9 @@ fun main(args: Array<String>) {
     test.build()
 
     var list= listOf(1,2,3,4,5)
-    val fold = list.fold(10, Int::compareTo)
+    val fold = list.fold(50, Int::compareTo)
     println("$fold")
+    println("$list")
 }
 
 val eps = 1E-10
