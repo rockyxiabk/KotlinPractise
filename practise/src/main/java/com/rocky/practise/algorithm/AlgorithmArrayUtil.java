@@ -1,8 +1,7 @@
 package com.rocky.practise.algorithm;
 
-import org.omg.CORBA.INTERNAL;
-
 import java.util.ArrayList;
+import java.util.BitSet;
 
 public class AlgorithmArrayUtil {
     /**
@@ -72,6 +71,35 @@ public class AlgorithmArrayUtil {
     }
 
     /**
+     * 将一个字符串中的空格替换成 "%20"。
+     * <p>
+     * Input:
+     * "A B"
+     * <p>
+     * Output:
+     * "A%20B"
+     */
+    public static String replaceSpace(StringBuffer str) {
+        int P1 = str.length() - 1;
+        for (int i = 0; i <= P1; i++)
+            if (str.charAt(i) == ' ')
+                str.append("  ");
+
+        int P2 = str.length() - 1;
+        while (P1 >= 0 && P2 > P1) {
+            char c = str.charAt(P1--);
+            if (c == ' ') {
+                str.setCharAt(P2--, '0');
+                str.setCharAt(P2--, '2');
+                str.setCharAt(P2--, '%');
+            } else {
+                str.setCharAt(P2--, c);
+            }
+        }
+        return str.toString();
+    }
+
+    /**
      * 按顺时针的方向，从外到里打印矩阵的值。下图的矩阵
      * * [1,   2,  3, 4]
      * * [5,   6,  7, 8]
@@ -133,6 +161,23 @@ public class AlgorithmArrayUtil {
         return -1;
     }
 
+    public static int findFirstShowChar2(String str) {
+        BitSet bs1 = new BitSet(128);
+        BitSet bs2 = new BitSet(128);
+        for (char c : str.toCharArray()) {
+            if (!bs1.get(c) && !bs2.get(c))
+                bs1.set(c);     // 0 0 -> 0 1
+            else if (bs1.get(c) && !bs2.get(c))
+                bs2.set(c);     // 0 1 -> 1 1
+        }
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (bs1.get(c) && !bs2.get(c))  // 0 1
+                return i;
+        }
+        return -1;
+    }
+
     /**
      * 输出所有和为 S 的连续正数序列。例如和为 100 的连续序列有：
      * <p>
@@ -178,11 +223,11 @@ public class AlgorithmArrayUtil {
         while (j <= n) {
             if (j == n || chars[j] == ' ') {
                 reserve(chars, i, j - 1);
-                i=j+1;
+                i = j + 1;
             }
             j++;
         }
-        reserve(chars,0,n-1);
+        reserve(chars, 0, n - 1);
         return new String(chars);
     }
 
@@ -196,5 +241,44 @@ public class AlgorithmArrayUtil {
         char c = chars[i];
         chars[i] = chars[j];
         chars[j] = c;
+    }
+
+    /**
+     * 0:
+     *  1: 2: 3: 4: 5:
+     *  6: 7: 8 9:	 10:
+     *
+     *  14: 15:
+     *  16: 17: 18: 19: 20:
+     *  21: 22: 23: 24: 25:
+     *  26: 27: 28: 29: 30:
+     *  31: 32:  33:! 34:" 35:#
+     *  36:$ 37:% 38:& 39:' 40:(
+     *  41:) 42:* 43:+ 44:, 45:-
+     *  46:. 47:/ 48:0 49:1 50:2
+     *  51:3 52:4 53:5 54:6 55:7
+     *  56:8 57:9 58:: 59:; 60:<
+     *  61:= 62:> 63:? 64:@ 65:A
+     *  66:B 67:C 68:D 69:E 70:F
+     *  71:G 72:H 73:I 74:J 75:K
+     *  76:L 77:M 78:N 79:O 80:P
+     *  81:Q 82:R 83:S 84:T 85:U
+     *  86:V 87:W 88:X 89:Y 90:Z
+     *  91:[ 92:\ 93:] 94:^ 95:_
+     *  96:` 97:a 98:b 99:c 100:d
+     *  101:e 102:f 103:g 104:h 105:i
+     *  106:j 107:k 108:l 109:m 110:n
+     *  111:o 112:p 113:q 114:r 115:s
+     *  116:t 117:u 118:v 119:w 120:x
+     *  121:y 122:z 123:{ 124:| 125:}
+     *  126:~ 127:
+     */
+    public static void getChar() {
+        for (int i = 0; i < 128; i++) {
+            System.out.print(" " + i + ":" + ((char) i));
+            if (i % 5 == 0) {
+                System.out.println();
+            }
+        }
     }
 }
