@@ -1,4 +1,4 @@
 include ':hilt'
-//include ':practise'
+include ':practise'
 include ':app'
 include ':core'

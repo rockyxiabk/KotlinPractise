@@ -7,7 +7,7 @@ class MainClass {
         Test instance = Test.getInstance();
         int firstShowChar = AlgorithmArrayUtil.findFirstShowChar("120dfgkl094jgf23");
         int firstShowChar2 = AlgorithmArrayUtil.findFirstShowChar2("20dfgse3nkl094jg7f23");
-        System.out.println("字符串中出现1次的字符:" + firstShowChar+"    字符串中出现1次的字符:" + firstShowChar2);
+        System.out.println("字符串中出现1次的字符:" + firstShowChar + "    字符串中出现1次的字符:" + firstShowChar2);
         int[] numbers = {1, 4, 5, 6, 3, 2, 7, 4};
         int repeatNumber = AlgorithmArrayUtil.findRepeatNumber(numbers);
         System.out.println("数组中是否有重复的数字出现:" + (repeatNumber > 0 ? "yes->" + repeatNumber : "没有"));
@@ -16,7 +16,7 @@ class MainClass {
         System.out.println("顺时针打印矩阵：" + AlgorithmArrayUtil.printMatrix(matrix));
         System.out.println("输出所有和为 S 的连续正数序列。例如和为 100 的连续序列有：" + AlgorithmArrayUtil.findSumNumber(100));
         System.out.println("输出语句反转：" + AlgorithmArrayUtil.englishWordReserves("I am a student."));
-
+        System.out.println("输入一个整数位10029，二进制中的1的个数：" + AlgorithmArrayUtil.sumOfIntOfOne(10029));
         AlgorithmArrayUtil.getChar();
     }
 }
